@@ -1,4 +1,4 @@
-# Relative Kinematics in Anchorless Environment
+# Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model
 
 Thus is a Python library for reproducing the work published in [Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model](https://link-url-here.org).
 
@@ -11,7 +11,7 @@ There are 4 main folders:
 
 Key points to consider:
 * The paths specified in the code are specified relative to the location of the code. Consider changing the path appropriately.
-* The codes in /main folder can be run again with different kinematic parameters. Be sure to change the save folder path if necessary.
+* The codes in /main folder can be run again with different simulation parameters. Be sure to change the save folder path if necessary.
 
 
 ## Support and questions to the community

@@ -128,16 +128,16 @@ Xt[0, :] = np.array([0.1, 0.8, 0.3])
 # Measurement model g
 g = lambda x: x
 
-# noise parameters
-Q = 0.01 * np.eye(D) # process covariance
-R = 0.01 * np.eye(D) # measurement covariance
+# true noise parameters
+Qt = 0.01 * np.eye(D) # process covariance
+Rt = 0.01 * np.eye(D) # measurement covariance
 
 # Simulate trajectory
 for tt in range(1, len(t)):
     Xt[tt, :] = Xt[tt - 1, :] + dt * lv_dynamics(Xt[tt - 1, :])
-    X[tt, :] = Xt[tt - 1, :] + dt * lv_dynamics(X[tt - 1, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=Q)
-    Y[tt, :] = g(X[tt, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=R)
-Y[0, :] = g(X[0, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=R)
+    X[tt, :] = Xt[tt - 1, :] + dt * lv_dynamics(X[tt - 1, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=Qt)
+    Y[tt, :] = g(X[tt, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=Rt)
+Y[0, :] = g(X[0, :]) + NOISE * mvn.rvs(mean=np.zeros(D), cov=Rt)
 
 '''
     Simulation parameters for DA-GPSSMs
@@ -255,7 +255,7 @@ for iter in range(NEXP):
 
             # PF weight update
             for nn in range(N):
-                weights[tt, nn] = mvn.pdf(x_pf[:, nn, tt, kk, iter], mean=Y[tt, :], cov=R)
+                weights[tt, nn] = mvn.pdf(x_pf[:, nn, tt, kk, iter], mean=Y[tt, :], cov=Rt)
             weights[tt, :] = weights[tt, :] / np.sum(weights[tt, :])
 
         # Sample trajectory to condition on
@@ -384,6 +384,6 @@ if SAVE:
     output = pathlib.Path(out_name)
     results_path = output.with_suffix('.npz')
     with open(results_path, 'xb') as results_file:
-        np.savez(results_file, x=Xt, y=Y, t=t, Q=Q, ls0=ls0, ls1=ls1, ls2=ls2, var=var, A0=A0, A1=A1, A2=A2, x_prim=x_prim, R=R, Lx=L, N=N, lQ=lQ, LambdaQ=LambdaQ, k_mh=k_mh, M=M, x_pf=x_pf, meanA=meanA, meanQ=meanQ)
+        np.savez(results_file, x=Xt, y=Y, t=t, Qt=Qt, ls0=ls0, ls1=ls1, ls2=ls2, var=var, Q=Q, A0=A0, A1=A1, A2=A2, x_prim=x_prim, R=R, Lx=L, N=N, lQ=lQ, LambdaQ=LambdaQ, k_mh=k_mh, M=M, x_pf=x_pf, meanA=meanA, meanQ=meanQ)
 
 print('finished!')

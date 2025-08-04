@@ -1,6 +1,6 @@
 # Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model
 
-Thus is a Python library for reproducing the work published in [Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model](https://link-url-here.org).
+Thus is a Python library for reproducing the work published in [Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model](hhttps://www.sciencedirect.com/science/article/pii/S0165168425001173).
 
 ## Description
 There are 4 main folders:
@@ -32,7 +32,7 @@ Python 3.5 and higher
     @Misc{Mishra2024,
       author =   {{A. Mishra and R. T. Rajan}},
       title =    {{Learning in High-Dimensional Dynamical Systems Using Gaussian Process State-Space Model}},
-      howpublished = {\url{https://link-url-here.org}},
+      howpublished = {\url{https://www.sciencedirect.com/science/article/pii/S0165168425001173}},
       year = {2024}
     }
 
